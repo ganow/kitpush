@@ -19,8 +19,8 @@ def main():
     out = proc.stdout.readlines()
 
     if len(out) == 2 and pattern.match(out[1].rstrip()):
-        print green('execute: ' + command)
         proc = Popen(command, shell=True)
+        print green('execute: ' + command)
         exit()
 
     print
