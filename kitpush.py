@@ -11,6 +11,11 @@ from voices import get_message
 def concat(list, sep=' '):
     return reduce(lambda x, y: x + sep + y, list)
 
+def exec_push(command):
+    proc = Popen(command, shell=True)
+    proc.wait()
+    print green('execute: ' + command)
+
 def main():
     pattern = re.compile('nothing to commit, working directory clean')
     command = concat(['git', 'push'] + sys.argv[1:])
@@ -19,9 +24,7 @@ def main():
     out = proc.stdout.readlines()
 
     if len(out) == 2 and pattern.match(out[1].rstrip()):
-        proc = Popen(command, shell=True)
-        proc.wait()
-        print green('execute: ' + command)
+        exec_push(command)
         exit()
 
     print
@@ -36,8 +39,7 @@ def main():
         if desire == 'n':
             exit()
         elif desire == 'y':
-            print green('execute: ' + command)
-            proc = Popen(command, shell=True)
+            exec_push(command)
             exit()
         else:
             print "please input 'y' or 'n'!!!"
