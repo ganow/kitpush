@@ -20,6 +20,7 @@ def main():
 
     if len(out) == 2 and pattern.match(out[1].rstrip()):
         proc = Popen(command, shell=True)
+        proc.wait()
         print green('execute: ' + command)
         exit()
 
