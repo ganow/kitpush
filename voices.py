@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 
 from random import choice
+import platform
 
 voices = (u'進むと言うのか？修羅の道を...ッ！！！',
           u'おにいちゃん？あんとらっくとふぁいるってなあに？ぷっしゅしちゃうの？',
@@ -10,4 +11,9 @@ voices = (u'進むと言うのか？修羅の道を...ッ！！！',
 
 def get_message():
     return choice(voices)
+
+def say_message(msg):
+    if platform.system() == 'Darwin':
+        from subprocess import Popen, PIPE
+        Popen('say ' + msg, shell=True, stdout=PIPE, stderr=PIPE)
 

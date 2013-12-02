@@ -6,7 +6,7 @@ from subprocess import Popen, PIPE
 import sys
 
 from col import red, green, yellow
-from voices import get_message
+from voices import get_message, say_message
 
 def concat(list, sep=' '):
     return reduce(lambda x, y: x + sep + y, list)
@@ -27,9 +27,14 @@ def main():
         exec_push(command)
         exit()
 
+    msg = get_message()
+
     print
-    print red(get_message())
+    print red(msg)
     print
+
+    say_message(msg)
+
     for line in out:
         print yellow(line),
     print
