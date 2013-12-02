@@ -13,6 +13,10 @@ ex)
 
 	$ kitpush origin master
 	
+### say
 
+osがmacの人は音声読み上げをKyokoさんに設定しましょう。
+
+しゃべりますよ？
 
 
