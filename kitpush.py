@@ -5,7 +5,7 @@ import re
 from subprocess import Popen, PIPE
 import sys
 
-from col import red, green
+from col import red, green, yellow
 from voices import get_message
 
 def concat(list, sep=' '):
@@ -25,6 +25,10 @@ def main():
 
     print
     print red(get_message())
+    print
+    for line in out:
+        print yellow(line),
+    print
     print u'git pushしますか？[yn] > ',
     while True:
         desire = raw_input()
@@ -36,6 +40,7 @@ def main():
             exit()
         else:
             print "please input 'y' or 'n'!!!"
+            print u'git pushしますか？[yn] > ',
 
 if __name__ == '__main__':
     main()
